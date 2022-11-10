@@ -2,37 +2,75 @@
 
 This project is being built in a series on my [YouTube Channel](https://youtube.com/@huntabyte) focused on building a full stack application with SvelteKit, PocketBase, and DaisyUI. 
 
-# Get Started
+## Get Started
 
-## Setup A Specific Episode's Code
-Replace episode-1 with whatever episode's source code you'd like to clone.
+### Episode 1
+<details><summary><b>Show instructions</b></summary>
 
-```bash
-git clone --single-branch --branch episode-1 https://github.com/huntabyte/showcase.git
-```
+1. Clone this branch:
 
-### OR
+    ```sh
+    $ git clone --single-branch --branch episode-1 https://github.com/huntabyte/showcase.git
+    ```
 
-## Full Source Code
-Clone this repository
-```bash
-git clone https://github.com/huntabyte/showcase.git
-```
+2. Start PocketBase Server
 
+    ```sh
+    cd apps/backend
+    
+    ./pocketbase serve 
+    ```
+
+3. Install Dependencies
+
+    ```sh
+    cd apps/web
+    
+    npm i
+    ```
+
+4. Start Dev Server
+
+    ```sh
+     cd apps/web
+     
+     npm run dev
+    ```
+
+</details>
 <br>
 
-### Start PocketBase
-```bash
-cd apps/backend
+### Full Project / main branch
+<details><summary><b>Show instructions</b></summary>
 
-./pocketbase serve
-```
+1. Clone the repository:
 
-### Install Dependencies & Start Dev Server
-```bash
-cd apps/web
+    ```sh
+    git clone https://github.com/huntabyte/showcase.git
+    ```
 
-npm i
+2. Start PocketBase Server
 
-npm run dev
-```
+    ```sh
+    cd apps/backend
+    
+    ./pocketbase serve 
+    ```
+
+3. Install Dependencies
+
+    ```sh
+    cd apps/web
+    
+    npm i
+    ```
+
+4. Start Dev Server
+
+    ```sh
+     cd apps/web
+     
+     npm run dev
+    ```
+
+</details>
