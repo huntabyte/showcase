@@ -4,7 +4,7 @@ This project is being built in a series on my [YouTube Channel](https://youtube.
 
 ## Get Started
 
-### Episode 1
+### Episode 1 Final Source Code
 <details><summary><b>Show instructions</b></summary>
 
 1. Clone this branch:
