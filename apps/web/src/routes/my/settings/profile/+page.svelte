@@ -6,6 +6,7 @@
 	import { getImageURL } from '$lib/utils';
 
 	export let data;
+	export let form;
 	let loading;
 
 	$: loading = false;
@@ -76,8 +77,23 @@
 				on:change={showPreview}
 				disabled={loading}
 			/>
+			{#if form?.errors?.avatar}
+				{#each form?.errors?.avatar as error}
+					<label for="avatar" class="label py-0 pt-1">
+						<span class="label-text-alt text-error">
+							{error}
+						</span>
+					</label>
+				{/each}
+			{/if}
 		</div>
-		<Input id="name" label="Name" value={data?.user?.name} disabled={loading} />
+		<Input
+			id="name"
+			label="Name"
+			value={form?.data?.name ?? data?.user?.name}
+			disabled={loading}
+			errors={form?.errors?.name}
+		/>
 		<div class="w-full max-w-lg pt-3">
 			<button class="btn btn-primary w-full max-w-lg" type="submit" disabled={loading}>
 				Update Profile

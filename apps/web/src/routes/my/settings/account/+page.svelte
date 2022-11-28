@@ -38,7 +38,6 @@
 			switch (result.type) {
 				case 'success':
 					await invalidateAll();
-					usernameModalOpen = false;
 					break;
 				case 'error':
 					break;
@@ -46,6 +45,7 @@
 					await applyAction(result);
 			}
 			loading = false;
+			usernameModalOpen = false;
 		};
 	};
 </script>
@@ -65,6 +65,7 @@
 					required={true}
 					value={form?.data?.email}
 					disabled={loading}
+					errors={form?.errors?.email}
 				/>
 				<button type="submit" class="btn btn-primary w-full" disabled={loading}
 					>Change my email</button
@@ -91,6 +92,7 @@
 					label="Enter your new username"
 					required={true}
 					value={form?.data?.username}
+					errors={form?.errors?.username}
 					disabled={loading}
 				/>
 				<button type="submit" class="btn btn-primary w-full" disabled={loading}

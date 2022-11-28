@@ -1,5 +1,7 @@
-import { error, redirect } from '@sveltejs/kit';
-import { serializeNonPOJOs } from '$lib/utils';
+import { error, invalid, redirect } from '@sveltejs/kit';
+import { serializeNonPOJOs, validateData } from '$lib/utils';
+import { updateProjectSchema } from '$lib/schemas';
+import { serialize } from 'object-to-formdata';
 
 export const load = async ({ locals, params }) => {
 	if (!locals.pb.authStore.isValid) {
@@ -26,16 +28,26 @@ export const load = async ({ locals, params }) => {
 
 export const actions = {
 	updateProject: async ({ request, locals, params }) => {
-		const formData = await request.formData();
+		const body = await request.formData();
 
-		const thumbnail = formData.get('thumbnail');
+		const thumb = body.get('thumbnail');
 
-		if (thumbnail.size === 0) {
-			formData.delete('thumbnail');
+		if (thumb.size === 0) {
+			body.delete('thumbnail');
+		}
+
+		const { formData, errors } = await validateData(body, updateProjectSchema);
+		const { thumbnail, ...rest } = formData;
+
+		if (errors) {
+			return invalid(400, {
+				data: rest,
+				errors: errors.fieldErrors
+			});
 		}
 
 		try {
-			await locals.pb.collection('projects').update(params.projectId, formData);
+			await locals.pb.collection('projects').update(params.projectId, serialize(formData));
 		} catch (err) {
 			console.log('Error: ', err);
 			throw error(err.status, err.message);
