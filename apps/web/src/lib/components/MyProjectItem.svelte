@@ -2,9 +2,29 @@
 	import { enhance } from '$app/forms';
 	import { Modal } from '$lib/components';
 	import { getImageURL } from '$lib/utils';
+	import toast from 'svelte-french-toast';
 	export let project;
 
 	let modalOpen;
+	let loading = false;
+
+	const submitDeleteProject = () => {
+		loading = true;
+		return async ({ result, update }) => {
+			switch (result.type) {
+				case 'success':
+					toast.success('Project deleted successfully!');
+					await update();
+					break;
+				case 'error':
+					toast.error('Could not delete project. Try again later.');
+					break;
+				default:
+					await update();
+			}
+			loading = false;
+		};
+	};
 
 	$: modalOpen = false;
 </script>
@@ -37,9 +57,9 @@
 			</div>
 			<div slot="actions" class="flex w-full items-center justify-center space-x-2">
 				<label for={project.id} class="btn btn-outline">Cancel</label>
-				<form action="?/deleteProject" method="POST" use:enhance>
+				<form action="?/deleteProject" method="POST" use:enhance={submitDeleteProject}>
 					<input type="hidden" name="id" value={project.id} />
-					<button type="submit" class="btn btn-error">Delete</button>
+					<button type="submit" class="btn btn-error" disabled={loading}>Delete</button>
 				</form>
 			</div>
 		</Modal>

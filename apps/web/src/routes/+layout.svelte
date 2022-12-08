@@ -1,9 +1,11 @@
 <script>
 	import '../app.postcss';
+	import { Toaster } from 'svelte-french-toast';
 	import { getImageURL } from '$lib/utils';
 	export let data;
 </script>
 
+<Toaster />
 <div class="min-h-full">
 	<nav class="navbar bg-base-100 border-b">
 		<div class="flex-1">
