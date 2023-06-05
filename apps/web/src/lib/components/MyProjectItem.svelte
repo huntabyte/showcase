@@ -21,7 +21,7 @@
 		</div>
 	</div>
 	<div class="flex flex-col w-full ml-4 h-full justify-center">
-		<a href="/project/{project.id}" class="font-semibold text-lg">{project.name}</a>
+		<a href="/projects/{project.id}" class="font-semibold text-lg">{project.name}</a>
 		<p>{project.tagline}</p>
 	</div>
 	<div class="flex items-center justify-end w-full">
