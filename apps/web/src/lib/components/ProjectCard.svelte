@@ -3,7 +3,7 @@
 	export let project;
 </script>
 
-<div class="card w-72 bg-base-100 shadow-xl">
+<div class="card bg-base-100 shadow-xl">
 	<figure>
 		<img
 			src={project?.thumbnail
@@ -16,7 +16,7 @@
 		<h2 class="card-title">{project.name}</h2>
 		<p>{project.tagline}</p>
 		<div class="card-actions justify-end">
-			<a href="/projects/{project.id}" class="btn btn-primary">View Project</a>
+			<a href="/projects/{project.id}" class="btn btn-primary w-full">View Project</a>
 		</div>
 	</div>
 </div>
